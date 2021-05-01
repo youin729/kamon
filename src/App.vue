@@ -34,6 +34,7 @@
   <ul v-for="mean in meanList" :key="mean">
     <li>{{ mean.name }}</li>
   </ul>
+  
 </template>
 
 <style>
