@@ -1,4 +1,5 @@
 module.exports = {
-    publicPath: 'https://youin729.github.io/kamon/dist/',
-    outputDir: 'dist'
+    publicPath: process.env.NODE_ENV === 'production'
+      ? '/kamon/'   //任意
+      : '/'
 }
