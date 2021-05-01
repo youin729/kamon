@@ -1,4 +1,4 @@
 module.exports = {
-    publicPath: '/dist/',
+    publicPath: 'https://youin729.github.io/kamon/dist/',
     outputDir: 'dist'
 }
