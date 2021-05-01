@@ -1,18 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <KamonList msg="Welcome to Your Vue.js App"/>
+  <p>ほげほげ</p>
 </template>
-
-<script>
-import KamonList from './views/containers/KamonList.vue'
-
-export default {
-  name: 'App',
-  components: {
-    KamonList
-  }
-}
-</script>
 
 <style>
 /*
