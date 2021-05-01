@@ -1,5 +1,5 @@
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
-      ? '/kamon/'   //任意
+      ? '/kamon/dist/'   //任意
       : '/'
 }
