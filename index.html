@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/konva@7.2.5/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>家紋わぷらす - あなたの家の家紋グッズを作成しましょう</title>
+    <style>
+	body {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #fffcf4;
+	}
+	*{
+		box-sizing: border-box;
+	}
+	p{
+		margin:0;
+	}
+	ul{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style: none;
+	}
+
+	header{
+		color:#FFF;
+		margin:0;
+		background-color:#7e9203;
+	}
+	header h1{
+		margin:0;
+		padding:10px 20px;
+		font-size:12px;
+	}
+	header h1 span{
+		font-size:16px;
+		margin-right:20px;
+	}
+	#container{
+		margin: 30px 10px;
+		display: flex;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: row;
+		flex-direction: row;
+		-webkit-box-align: start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+	}
+	#container .left{
+		width:33%;
+	}
+	#container .right{
+		width:66%;
+	}
+	.controlPanel{
+		border:1px solid #666;
+	}
+	.control ul{
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		width: 100%;
+		height: 100%;
+	}
+	.control ul li{
+		width: 50%;
+		height: 33.333333%;
+	}
+	.control ul li > div{
+		margin:5%;
+		padding:10%;
+		background-color:#f2f2f2;
+		cursor:pointer;
+	}
+	.control ul li p{
+		text-align:center;
+	}
+	.control ul li img{
+		width: 100%;
+	}
+	.headPanel{
+		display: flex;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: row;
+		flex-direction: row;
+	}
+	.headPanel li{
+		background-color: #f2f2f2;
+		width: 25%;
+		color: #7e9203;
+		text-align: center;
+		padding: 7px 5px 5px;
+		cursor: pointer;
+	}
+	.headPanel li img{
+		width:40px;
+	}
+	#board{
+		border:1px solid #666;
+		width:50vw;
+		margin:10px auto;
+		height:50vh;
+		background-color:#FFF;
+	}
+	#kamonList{
+		display:flex;
+		margin:0;
+		padding:0;
+		overflow-x: scroll;
+	}
+	#kamonList li{
+		list-style: none;
+	}
+	canvas {
+		border: 1px solid #66f0f0;
+	}
+    </style>
+  </head>
+  <body>
+	<header>
+		<h1>
+			<span>家紋わぷらす</span>あなたの家の家紋を作成いたします。
+		</h1>
+	</header>
+
+	<div id="container">
+		<div class="left">
+			<div class="controlPanel">
+				<ul class="headPanel">
+					<li>
+						<img src="public/img/source/10.png" alt="家紋">
+						<p>家紋</p>
+					</li>
+					<li>
+						<img src="public/img/source/17.png" alt="家紋">
+						<p>枠</p>
+					</li>
+					<li>
+						<img src="public/img/source/16.png" alt="家紋">
+						<p>装飾</p>
+					</li>
+					<li>
+						<img src="public/img/source/22.png" alt="家紋">
+						<p>グッズ</p>
+					</li>
+				</ul>
+				<div class="control">
+					<ul class="panel">
+						<li>
+							<div>
+								<img src="public/img/source/10.png" alt="家紋">
+								<p>家紋を選ぶ</p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="public/img/source/17.png" alt="家紋">
+								<p>枠を選ぶ</p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="public/img/source/16.png" alt="家紋">
+								<p>装飾を選ぶ</p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<img src="public/img/source/22.png" alt="家紋">
+								<p>グッズを選ぶ</p>
+							</div>
+						</li>
+						<li>
+							<div>
+								<i class="tmix-design-finish"></i>
+								<div>
+									<p>デザイン完成</p>
+									<button id="download">ログインするとデザインを保存できます</button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="right">
+			<ul id="kamonList">
+				<li><img src='public/img/source/1.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/2.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/3.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/4.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/5.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/6.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/7.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/8.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/9.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/10.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/11.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/12.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/13.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/14.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/15.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/16.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/17.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/18.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/19.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/20.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/21.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/22.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/23.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/24.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/25.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/26.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/27.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/28.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/29.png' alt='家紋' width='50'></li>
+				<li><img src='public/img/source/30.png' alt='家紋' width='50'></li>
+			</ul>
+			<div id="board"></div>
+		</div>
+	</div>
+    <script>
+		const imageSize = 200
+		const board = document.getElementById('board')
+
+		// draw canvas
+		const width = board.clientWidth
+		const height = board.clientHeight
+		const stage = new Konva.Stage({
+			container: 'board',
+			width: width,
+			height: height
+		})
+
+		// layer add
+		const layer = new Konva.Layer()
+		stage.add(layer)
+		const tr = new Konva.Transformer({
+			keepRatio: true,
+			enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+			borderStroke: 'black',
+			anchorStroke: 'black',
+		})
+		layer.add(tr)
+
+		// 各画像のz-indexを決める
+		let zIndexRules = new Array()
+
+		// 画像を描画
+		function drawImage(imageObj) {
+			// darth vader
+			const img = new Konva.Image({
+				image: imageObj,
+				x: stage.width() / 2 - imageSize / 2,
+				y: stage.height() / 2 - imageSize / 2,
+				width: imageSize,
+				height: imageSize,
+				draggable: true,
+			})
+  
+			layer.add(img)
+			layer.draw()
+			img.zIndex(zIndexRules.length)
+			zIndexRules.push(zIndexRules.length)
+
+			// add cursor styling
+			img.on('mousedown', function () {
+				document.body.style.cursor = 'pointer'
+				tr.nodes([img])
+				img.cache()
+			})
+		}
+
+		//画像追加
+		kamonList = document.getElementById("kamonList")
+		let imgSrc = ''
+		
+		for(const kamonItem of kamonList.children){
+			const dropImg = kamonItem.children.item(0)
+			dropImg.onmousedown = function(){
+				imgSrc = dropImg.getAttribute('src')
+				var imageObj = new Image()
+				imageObj.onload = function () {
+					drawImage(this)
+				}
+				imageObj.src = imgSrc
+			}
+		}
+
+		// ファイルダウンロード
+		document.getElementById("download").onclick = (event) => {
+			let canvas = document.getElementsByTagName("canvas")
+			let link = document.createElement("a")
+			link.href = canvas[0].toDataURL("image/png")
+			link.download = "test.png"
+			link.click()
+		}
+    </script>
+  </body>
+</html>
